@@ -9,7 +9,6 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Entity
-@Table(name ="inscription")
 @AllArgsConstructor
 @NoArgsConstructor
 public class Inscription {

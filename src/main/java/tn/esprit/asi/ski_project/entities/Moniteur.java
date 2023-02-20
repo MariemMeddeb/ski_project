@@ -9,7 +9,6 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
-@Table(name = "moniteurs")
 public class Moniteur {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

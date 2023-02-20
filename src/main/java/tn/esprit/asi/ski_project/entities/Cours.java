@@ -8,7 +8,6 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
-@Table(name ="cours")
 public class Cours {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

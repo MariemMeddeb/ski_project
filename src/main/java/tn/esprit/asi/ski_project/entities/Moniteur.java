@@ -6,6 +6,8 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Set;
+
 @Getter
 @Setter
 @Entity
@@ -17,5 +19,5 @@ public class Moniteur {
     private String prenomM;
     private LocalDate dateRecru;
     @OneToMany
-    private List<Cours> cours;
+    private Set<Cours> cours;
 }

@@ -5,6 +5,8 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
+
 @Getter
 @Setter
 @Entity
@@ -17,7 +19,7 @@ public class Cours {
     private TypeCours typeCours;
 
     @OneToMany(mappedBy = "cours")
-    private List <Inscription> inscriptions;
+    private Set<Inscription> inscriptions;
 
 
 }

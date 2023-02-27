@@ -1,5 +1,6 @@
 package tn.esprit.asi.ski_project.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -8,6 +9,8 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Set;
+
 @Getter
 @Setter
 @Entity
@@ -22,9 +25,10 @@ public class Skieur {
     private LocalDate dateNaissance;
     private String ville;
     @OneToMany(mappedBy = "skieur")
-    private List <Inscription> inscriptions;
+    private Set <Inscription> inscriptions;
     @OneToOne
     private Abonnement abonnement;
     @ManyToMany
-    private List<Piste> pistes;
+    //@JsonIgnore
+    private Set<Piste> pistes;
 }

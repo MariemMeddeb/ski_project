@@ -10,4 +10,5 @@ public interface IAbonnementService {
     List<Abonnement> getAll();
     Abonnement getById(long id);
     void remove(long id);
+    //Abonnement assignAbonnementToSkier(Long numSkieur, Long numAbon);
 }

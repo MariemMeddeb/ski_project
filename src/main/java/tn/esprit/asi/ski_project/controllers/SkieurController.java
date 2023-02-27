@@ -41,6 +41,10 @@ public class SkieurController {
     {
         skieurService.remove(idSkieur);
     }
+    @PutMapping("/{numSkieur}/{numPiste}")
+    Skieur assignSkierToPiste(@PathVariable Long numSkieur,@PathVariable Long numPiste){
+        return skieurService.assignSkierToPiste(numSkieur,numPiste);
+    }
 
 
 

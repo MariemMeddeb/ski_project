@@ -1,10 +1,13 @@
 package tn.esprit.asi.ski_project.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
+
 @Getter
 @Setter
 @Entity
@@ -18,5 +21,6 @@ public class Piste {
     private Couleur couleur;
 
     @ManyToMany(mappedBy = "pistes")
-    private List<Skieur> skieurs;
+    @JsonIgnore
+    private Set<Skieur> skieurs;
 }

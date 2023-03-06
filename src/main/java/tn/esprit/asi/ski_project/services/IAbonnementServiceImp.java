@@ -5,10 +5,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 import tn.esprit.asi.ski_project.entities.Abonnement;
 import tn.esprit.asi.ski_project.entities.Skieur;
+import tn.esprit.asi.ski_project.entities.TypeAbonnement;
 import tn.esprit.asi.ski_project.repositories.AbonnementRepository;
 import tn.esprit.asi.ski_project.repositories.SkieurRepository;
 
 import java.util.List;
+import java.util.Set;
 
 @Service //instance de la classe dans le spring context
 public class IAbonnementServiceImp implements IAbonnementService{
@@ -44,7 +46,10 @@ public class IAbonnementServiceImp implements IAbonnementService{
         abonnementRepository.deleteById(id);
     }
 
-
+    @Override
+    public Set<Abonnement> findByTypeAbon(TypeAbonnement typeAbonnement) {
+        return abonnementRepository.findByTypeAbon(typeAbonnement);
+    }
 
 
 }

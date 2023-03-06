@@ -4,9 +4,11 @@ import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.asi.ski_project.entities.Abonnement;
+import tn.esprit.asi.ski_project.entities.TypeAbonnement;
 import tn.esprit.asi.ski_project.services.IAbonnementService;
 
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/abonnement")
@@ -37,5 +39,8 @@ public class AbonnementController {
     public void remove(@PathVariable long id) {
         iAbonnementService.remove(id);
     }
+
+    public Set<Abonnement> findByTypeAbon(TypeAbonnement typeAbonnement){
+        return iAbonnementService.findByTypeAbon(typeAbonnement);}
 
 }

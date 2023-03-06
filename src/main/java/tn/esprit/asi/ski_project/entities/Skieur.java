@@ -31,4 +31,5 @@ public class Skieur {
     @ManyToMany
     //@JsonIgnore
     private Set<Piste> pistes;
+
 }

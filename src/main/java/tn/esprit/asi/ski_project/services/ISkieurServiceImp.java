@@ -3,14 +3,12 @@ package tn.esprit.asi.ski_project.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
-import tn.esprit.asi.ski_project.entities.Abonnement;
-import tn.esprit.asi.ski_project.entities.Piste;
-import tn.esprit.asi.ski_project.entities.Skieur;
-import tn.esprit.asi.ski_project.repositories.AbonnementRepository;
-import tn.esprit.asi.ski_project.repositories.PisteRepository;
-import tn.esprit.asi.ski_project.repositories.SkieurRepository;
+import tn.esprit.asi.ski_project.entities.*;
+import tn.esprit.asi.ski_project.repositories.*;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class ISkieurServiceImp implements ISkieurService{
@@ -21,6 +19,10 @@ public class ISkieurServiceImp implements ISkieurService{
     private PisteRepository pisteRepository;
     @Autowired
     private AbonnementRepository abonnementRepository;
+    @Autowired
+    private CoursRepository coursRepository;
+    @Autowired
+    private InscriptionRepository inscriptionRepository;
     @Override
     public void add(Skieur s) {
         skieurRepository.save(s);
@@ -48,7 +50,7 @@ public class ISkieurServiceImp implements ISkieurService{
     }
 
     @Override
-    public Skieur assignSkierToPiste(Long numSkieur, Long numPiste) {
+    public Skieur assignSkierToPiste(Long numSkieur, Long numPiste) { //ki naamel assign nestaamlou "set"
         //recuperation des objets
         Skieur skieur = skieurRepository.findById(numSkieur).orElse(null);
         //verifier si skieur not null
@@ -61,19 +63,51 @@ public class ISkieurServiceImp implements ISkieurService{
     pistes.add(piste);
     skieur.setPistes(pistes);
     */
-        skieur.getPistes().add(piste);
+        skieur.getPistes().add(piste); //njib mel skieur liste des pistes puis najoutiw l piste ellio l Id mte3ha numPiste
         //save
         return  skieurRepository.save(skieur);
     }
+
+
     @Override
-    public Skieur assignAbonnementToSkier(Long numSkieur, Long numAbon) {
+    public Skieur assignSkierToAbonnement(Long numSkieur, Long numAbon) {
         Skieur skieur = skieurRepository.findById(numSkieur).orElse(null);
         Assert.notNull(skieur,"skieur not found");
         Abonnement abonnement = abonnementRepository.findById(numAbon).orElse(null);
         Assert.notNull(abonnement,"abonnement not found");
         skieur.setAbonnement(abonnement);
-
-
         return skieurRepository.save(skieur);
     }
+    @Override
+     public List<Skieur> retrieveSkiersBySubscriptionType(TypeAbonnement typeAbonnement) {
+        return skieurRepository.findByAbonnementTypeAbon(typeAbonnement);
+    }
+
+    @Override
+    public Set<Abonnement> findByTypeAbon(TypeAbonnement typeAbonnement) {
+        return abonnementRepository.findByTypeAbon(typeAbonnement);
+    }
+
+    //  @Override
+ //  public List<Skieur> retrieveSkiersBySubscriptionType(TypeAbonnement typeAbonnement) {
+ //      List<Skieur> list = new ArrayList<>();
+ //      for (Skieur s:getAll()) {
+ //          if (s.getAbonnement().getTypeAbon().equals(typeAbonnement)) {
+ //              list.add(s);
+ //          }
+ //      }
+ //      return list;
+ //  }
+
+    // @Override
+ // public Skieur addSkierAndAssignToCourse(Skieur skieur,Long numCours, Long numInscription) {
+ //     Cours cours = coursRepository.findById(numCours).orElse(null);
+ //     Inscription inscription = inscriptionRepository.findById(numInscription).orElse(null);
+ //     if(cours!=null && inscription!=null){ add(skieur);}
+ //     List<Inscription> inscriptions = new ArrayList<Inscription>();
+ //     coursList.add(cours);
+ //     cours.setInscriptions(inscriptions);
+
+ //     return null;
+ // }
 }

@@ -7,6 +7,7 @@ import tn.esprit.asi.ski_project.entities.Abonnement;
 import tn.esprit.asi.ski_project.entities.TypeAbonnement;
 import tn.esprit.asi.ski_project.services.IAbonnementService;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Set;
 
@@ -40,7 +41,15 @@ public class AbonnementController {
         iAbonnementService.remove(id);
     }
 
-    public Set<Abonnement> findByTypeAbon(TypeAbonnement typeAbonnement){
+    @GetMapping("/abonType/{typeAbonnement}")
+    public Set<Abonnement> findByTypeAbon(@PathVariable TypeAbonnement typeAbonnement){
         return iAbonnementService.findByTypeAbon(typeAbonnement);}
-
+    @GetMapping("abonOrdDD/{typeAbonnement}")
+    public Set<Abonnement>  findByTypeAbonOrderByDateDebut(@PathVariable TypeAbonnement typeAbonnement){
+        return iAbonnementService.findByTypeAbonOrderByDateDebut(typeAbonnement);
+    }
+    @GetMapping("/{dateDebut}/{dateFin}")
+    public Set<Abonnement> retrieveSubscriptionsByDates(@PathVariable LocalDate dateDebut, @PathVariable LocalDate dateFin){
+        return iAbonnementService.retrieveSubscriptionsByDates(dateDebut,dateFin);
+    }
 }

@@ -41,4 +41,9 @@ public class InscriptionController {
     {
         inscriptionService.remove(idInscription);
     }
+    @PostMapping("/{numSkieur}/{numCours}")
+
+    public Inscription addRegistrationAndAssignToSkierAndCourse(@RequestBody Inscription inscription, @PathVariable Long numSkieur,@PathVariable Long numCours){
+        return inscriptionService.addRegistrationAndAssignToSkierAndCourse(inscription, numSkieur,numCours);
+    }
 }

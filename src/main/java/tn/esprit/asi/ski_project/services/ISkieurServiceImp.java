@@ -83,11 +83,6 @@ public class ISkieurServiceImp implements ISkieurService{
         return skieurRepository.findByAbonnementTypeAbon(typeAbonnement);
     }
 
-    @Override
-    public Set<Abonnement> findByTypeAbon(TypeAbonnement typeAbonnement) {
-        return abonnementRepository.findByTypeAbon(typeAbonnement);
-    }
-
     //  @Override
  //  public List<Skieur> retrieveSkiersBySubscriptionType(TypeAbonnement typeAbonnement) {
  //      List<Skieur> list = new ArrayList<>();

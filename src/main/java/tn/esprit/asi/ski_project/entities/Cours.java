@@ -17,6 +17,7 @@ public class Cours {
     private int niveau;
     @Enumerated(EnumType.STRING)
     private TypeCours typeCours;
+    private Support support;
 
     @OneToMany(mappedBy = "cours")
     private Set<Inscription> inscriptions;

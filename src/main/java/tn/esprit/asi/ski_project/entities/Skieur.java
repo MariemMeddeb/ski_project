@@ -24,6 +24,7 @@ public class Skieur {
     private String prenomS;
     private LocalDate dateNaissance;
     private String ville;
+    private Long ageS;
     @OneToMany(mappedBy = "skieur")
     private Set <Inscription> inscriptions;
     @OneToOne

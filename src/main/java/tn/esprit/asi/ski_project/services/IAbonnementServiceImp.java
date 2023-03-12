@@ -9,6 +9,7 @@ import tn.esprit.asi.ski_project.entities.TypeAbonnement;
 import tn.esprit.asi.ski_project.repositories.AbonnementRepository;
 import tn.esprit.asi.ski_project.repositories.SkieurRepository;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Set;
 
@@ -49,6 +50,14 @@ public class IAbonnementServiceImp implements IAbonnementService{
     @Override
     public Set<Abonnement> findByTypeAbon(TypeAbonnement typeAbonnement) {
         return abonnementRepository.findByTypeAbon(typeAbonnement);
+    }
+    public Set<Abonnement> findByTypeAbonOrderByDateDebut(TypeAbonnement typeAbonnement){
+        return abonnementRepository.findByTypeAbonOrderByDateDebut(typeAbonnement);
+    }
+
+    @Override
+    public Set<Abonnement> retrieveSubscriptionsByDates(LocalDate dateDebut, LocalDate dateFin) {
+        return abonnementRepository.findByDateDebutAndDatefin(dateDebut,dateFin);
     }
 
 

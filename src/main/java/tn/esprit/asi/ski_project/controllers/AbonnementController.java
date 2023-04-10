@@ -2,6 +2,7 @@ package tn.esprit.asi.ski_project.controllers;
 
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.asi.ski_project.entities.Abonnement;
 import tn.esprit.asi.ski_project.entities.TypeAbonnement;
@@ -49,7 +50,7 @@ public class AbonnementController {
         return iAbonnementService.findByTypeAbonOrderByDateDebut(typeAbonnement);
     }
     @GetMapping("/{dateDebut}/{dateFin}")
-    public Set<Abonnement> retrieveSubscriptionsByDates(@PathVariable LocalDate dateDebut, @PathVariable LocalDate dateFin){
+    public Set<Abonnement> retrieveSubscriptionsByDates(@PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate dateDebut, @PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate dateFin){
         return iAbonnementService.retrieveSubscriptionsByDates(dateDebut,dateFin);
     }
 }

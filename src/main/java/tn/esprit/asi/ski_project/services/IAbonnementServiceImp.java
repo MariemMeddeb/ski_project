@@ -57,7 +57,7 @@ public class IAbonnementServiceImp implements IAbonnementService{
 
     @Override
     public Set<Abonnement> retrieveSubscriptionsByDates(LocalDate dateDebut, LocalDate dateFin) {
-        return abonnementRepository.findByDateDebutAndDatefin(dateDebut,dateFin);
+        return abonnementRepository.findByDateDebutBetween(dateDebut,dateFin);
     }
 
 
